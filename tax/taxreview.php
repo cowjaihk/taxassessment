@@ -51,15 +51,20 @@ while($x<=$excel->sheets[0]['numRows']) {
         }else {
           $selfmpf = $selfincome * $MPFpercent;
         }
+      }else{
+        $selfmpf = "0";
       }
 
       if ($spouseincome >= $MPF) {
-        if ($spousempf >= $MPFover) {
+        if ($spouseincome >= $MPFover) {
           $spousempf = $MPFoverpay;
         }else{
           $spousempf = $spouseincome * $MPFpercent;
         }
+      }else{
+        $spousempf = "0";
       }
+
       $totalmpf=$selfmpf+$spousempf;
       //Net Total income
       $selfNTI = $spouseNTI = $totalNTI= "0";
@@ -133,11 +138,21 @@ while($x<=$excel->sheets[0]['numRows']) {
 
       //Recommended to joint the tax?
       $JPA = PA($NCI);
-      $JPApable = $JPA*"0.75";
-      if ($JPApable>$totalTP){
-          echo "Joint Assessment Recommednded is Yes.<br><br>";
+      if ($JPA >= "20000"){
+        $JPApable = $JPA-"20000";
       }else{
-              echo "Joint Assessment Recommednded is No.<br><br>";
+      $JPApable = $JPA*"0.75";
+}
+//echo $JPA."<br>";
+echo $JPA."<br>";
+echo $JPApable;
+
+      if ($JPApable>=$totalTP){
+        //echo $totalPAall . ">" . $totalTP;
+          echo "Joint Assessment Recommednded is No.<br><br>";
+      }else{
+                //echo $totalPAall . "<" . $totalTP;
+          echo "Joint Assessment Recommednded is Yes.<br><br>";
       }
 
   $x++;
