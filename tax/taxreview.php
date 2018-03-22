@@ -143,9 +143,6 @@ while($x<=$excel->sheets[0]['numRows']) {
       }else{
       $JPApable = $JPA*"0.75";
 }
-//echo $JPA."<br>";
-echo $JPA."<br>";
-echo $JPApable;
 
       if ($JPApable>=$totalTP){
         //echo $totalPAall . ">" . $totalTP;
